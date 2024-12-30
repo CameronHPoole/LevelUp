@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+input {
+  width: 100%;
+}
+
 .square {
   border: 1px solid #000000;
   width: 200px;

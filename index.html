@@ -14,28 +14,54 @@
   <div class="container">
     <h1>Savings Planner</h1>
     <p class="subheading">
-      Add your financial goals and their associated data below
+      Add your financial goals below
     </p>
     
-    <form>
-    <label for="fname">First goal:</label><br>
-    <input type="number" id="goal1" name="goal1"><br>
-    <label for="lname">Second goal:</label><br>
-    <input type="number" id="goal2" name="goal2">
-    <input type="submit" value="Submit">
+    <form id ="goalPlanner">
+      <label for="goal1">First goal ($):</label><br>
+      <input type="number" id="g1" name="g1"><br>
+      <label for="goal2">Second goal ($):</label><br>
+      <input type="number" id="g2" name="g2">
+      <label for="monthly">Monthly Savings ($/mo):</label><br>
+      <input type="number" id="savings" name="savings">
+      <label for="range">Priority (0 is prioritize goal 1)</label>
+      <input type="range" min="1" max="100" value="50" class="slider" id="priority">
+      <output name="result1" for="g1 g2">Goal 1 achieved in: </output>
     </form>
 
     <script>
-      const firstForm = document.forms[0];
-      console.log(firstForm);
+      const form = document.getElementById("goalPlanner");
+      const g1 = form.elements["g1"];
+      const g2 = form.elements["g2"];
+      const monthly = form.elements["monthly"];
+      const priority = form.elements["priority"];
+      
+      const result = form.elements["result"];
+
+      function updateResult() {
+        const g1Value = parseInt(g1.value);
+        const g2Value = parseInt(g2.value);
+        const monthlyValue = parseInt(monthly.value);
+        const priorityValue = parseInt(priority.value);
+        result.value = g1Value / (monthlyValue * (priorityValue / 100));
+      }
+
+      form.addEventListener("input", updateResult);
+
+      updateResult();
+
+      //const firstForm = document.forms[0];
+      //console.log(firstForm);
     </script>
     
+    <!--
     <div class="square" id="circleID"></div>
     <div class="action">
       <button onclick="paint('red')">Red</button>
       <button onclick="paint('green')">Green</button>
       <button onclick="paint('yellow')">Yellow</button>
     </div>
+    -->
   </div>
 </body>
 </html>

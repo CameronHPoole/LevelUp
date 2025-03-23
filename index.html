@@ -19,15 +19,17 @@
     
     <form id ="goalPlanner">
       <label for="goal1">First goal ($):</label><br>
-      <input type="number" id="g1" name="g1"><br>
+      <input type="number" id="g1" name="g1" oninput="updateResult()"><br>
       <label for="goal2">Second goal ($):</label><br>
-      <input type="number" id="g2" name="g2">
+      <input type="number" id="g2" name="g2" oninput="updateResult()">
       <label for="monthly">Monthly Savings ($/mo):</label><br>
-      <input type="number" id="savings" name="savings">
+      <input type="number" id="savings" name="savings" oninput="updateResult()">
       <label for="range">Priority (0 is prioritize goal 1)</label>
-      <input type="range" min="1" max="100" value="50" class="slider" id="priority">
-      <output name="result1" for="g1 g2 savings priority">0</output>
+      <input type="range" min="1" max="100" value="50" class="slider" id="priority" oninput="updateResult()">
+      
     </form>
+
+    <p>Months to achieve goal 1: <output name="result1" for="g1 g2 savings priority">0</output></p>
 
     <script>
       const form = document.getElementById("goalPlanner");

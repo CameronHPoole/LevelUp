@@ -25,11 +25,12 @@
       <label for="monthly">Monthly Savings ($/mo):</label><br>
       <input type="number" id="savings" name="savings" oninput="updateResult()">
       <label for="range">Priority (0 is prioritize goal 1)</label>
-      <input type="range" min="1" max="100" value="50" class="slider" id="priority" oninput="updateResult()">
+      <input type="range" min="0" max="100" value="0" class="slider" id="priority" oninput="updateResult()">
       
     </form>
 
     <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p>
+    <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
 
     <script>
       const form = document.getElementById("goalPlanner");
@@ -47,7 +48,23 @@
         const priorityValue = parseInt(priority.value);
         //result.value = g1Value / (monthlyValue * (priorityValue / 100));
 
-        document.getElementById("result1").value = g1Value / (monthlyValue * (priorityValue / 100));
+        const r1 = 0;
+        const r2 = 0;
+        if (priorityValue == 0){
+          r1 = g1Value / monthlyValue;
+          r2 = r1 + (g2Value / monthlyValue);
+        }
+        else if (priorityValue == 100){
+          r2 = g2Value / monthlyValue;
+          r1 = r2 + (g1Value / monthlyValue);
+        }
+        else {
+          r1 = g1Value / (monthlyValue * (1 - (priorityValue / 100)))
+          r2 = g2Value / (monthlyValue * (priorityValue / 100))
+        }
+
+        document.getElementById("result1").value = r1;
+        document.getElementById("result2").value = r2;
       }
 
       //form.addEventListener("input", updateResult);

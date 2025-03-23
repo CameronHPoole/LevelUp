@@ -32,7 +32,7 @@
     <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p>
     <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
 
-    <script>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8">
       const form = document.getElementById("goalPlanner");
       const g1 = form.elements["g1"];
       const g2 = form.elements["g2"];
@@ -47,23 +47,75 @@
         const monthlyValue = parseInt(monthly.value);
         const priorityValue = parseInt(priority.value);
         //result.value = g1Value / (monthlyValue * (priorityValue / 100));
+        const d = new Date();
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        
+        var tempMonth = d.getMonth();
+        var xrange = month[tempMonth];
 
         var r1 = 0;
         var r2 = 0;
-        if (priorityValue == 0){
-          r1 = g1Value / monthlyValue;
-          r2 = r1 + (g2Value / monthlyValue);
-        } else if (priorityValue == 100){
-          r2 = g2Value / monthlyValue;
-          r1 = r2 + (g1Value / monthlyValue);
-        } else {
-          r1 = g1Value / (monthlyValue * (1 - (priorityValue / 100)));
-          r2 = g2Value / (monthlyValue * (priorityValue / 100));
+        
+        var goal1Met = false;
+        var goal2Met = false;
+        var y1 = [0];
+        var y2 = [0];
+
+        while (!(goal1Met && goal2Met)){
+          // calculate proportional monthly savings
+          var p1 = monthlyValue * (1 - (priorityValue / 100));
+          var p2 = monthlyValue * (priorityValue / 100);
+          
+          // check if goal will be met this "month"
+          if (g1Value - y1[y1.length - 1] < p1){
+            y1.push(g1Value);
+            p2 += p1 - (g1Value - y1[y1.length - 1]);
+            goal1Met = true;
+          } else if (g2Value - y2[y2.length - 1] < p2){
+            y2.push(g2Value);
+            p1 += p2 - (g2Value - y2[y2.length - 1]);
+            goal2Met = true;
+          }
+
+          // if neither goal met, add proportional monthly savings
+          if (!(goal1Met || goal2Met)){
+            y1.push(y1[y1.length - 1] + p1);
+            y2.push(y2[y2.length - 1] + p2);
+          } else if (goal1Met){
+            y2.push(y2[y2.length - 1] + p2);
+          } else if (goal2Met){
+            y1.push(y1[y1.length - 1] + p1);
+          }
+
+          // increment xrange
+          tempMonth += 1;
+          xrange.push(tempMonth % 12);
         }
 
-        document.getElementById("result1").value = r1;
-        document.getElementById("result2").value = r2;
+        document.getElementById("result1").value = Math.round(r1);
+        document.getElementById("result2").value = Math.round(r2);
       }
+
+      // generate bar chart
+      var trace1 = {
+        x: xrange,
+        y: y1,
+        name: 'Goal 1',
+        type: 'bar'
+      };
+
+      var trace2 = {
+        x: xrange,
+        y: y2,
+        name: 'Goal 2',
+        type: 'bar'
+      };
+
+      var data = [trace1, trace2];
+
+      var layout = {barmode: 'group'};
+
+      Plotly.newPlot('myDiv', data, layout);
 
       //form.addEventListener("input", updateResult);
 

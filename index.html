@@ -66,8 +66,8 @@
           var p1 = monthlyValue * (1 - (priorityValue / 100));
           var p2 = monthlyValue * (priorityValue / 100);
           
-          var lasty1 = y1[y1.length - 1]
-          var lasty2 = y2[y2.length - 1]
+          var lasty1 = y1[y1.length - 1].value;
+          var lasty2 = y2[y2.length - 1].value;
           // check if goal will be met this "month"
           if (g1Value - lasty1 < p1){
             y1.push(g1Value);

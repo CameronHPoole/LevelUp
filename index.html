@@ -53,14 +53,12 @@
         if (priorityValue == 0){
           r1 = g1Value / monthlyValue;
           r2 = r1 + (g2Value / monthlyValue);
-        }
-        else if (priorityValue == 100){
+        } else if (priorityValue == 100){
           r2 = g2Value / monthlyValue;
           r1 = r2 + (g1Value / monthlyValue);
-        }
-        else {
-          r1 = g1Value / (monthlyValue * (1 - (priorityValue / 100)))
-          r2 = g2Value / (monthlyValue * (priorityValue / 100))
+        } else {
+          r1 = g1Value / (monthlyValue * (1 - (priorityValue / 100)));
+          r2 = g2Value / (monthlyValue * (priorityValue / 100));
         }
 
         document.getElementById("result1").value = r1;

@@ -51,7 +51,7 @@
         const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         
         var tempMonth = d.getMonth();
-        var xrange = month[tempMonth];
+        var xrange = [month[tempMonth]];
 
         var r1 = 0;
         var r2 = 0;
@@ -96,7 +96,7 @@
         document.getElementById("result2").value = Math.round(r2);
       }
     </script>
-    
+
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8">
       // generate bar chart
       var trace1 = {

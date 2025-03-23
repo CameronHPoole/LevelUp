@@ -61,7 +61,7 @@
         var y1 = [0];
         var y2 = [0];
 
-        while (!(goal1Met && goal2Met)){
+        while (!(goal1Met && goal2Met) && tempMonth < 10000){
           // calculate proportional monthly savings
           var p1 = monthlyValue * (1 - (priorityValue / 100));
           var p2 = monthlyValue * (priorityValue / 100);

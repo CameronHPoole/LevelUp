@@ -29,7 +29,7 @@
       
     </form>
 
-    <p>Months to achieve goal 1: <output name="result1" for="g1 g2 savings priority">0</output></p>
+    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p>
 
     <script>
       const form = document.getElementById("goalPlanner");
@@ -38,7 +38,7 @@
       const monthly = form.elements["savings"];
       const priority = form.elements["priority"];
       
-      const result = form.elements["result"];
+      const result = form.elements["result1"];
 
       function updateResult() {
         const g1Value = parseInt(g1.value);

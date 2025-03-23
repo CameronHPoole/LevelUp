@@ -66,25 +66,27 @@
           var p1 = monthlyValue * (1 - (priorityValue / 100));
           var p2 = monthlyValue * (priorityValue / 100);
           
+          var lasty1 = y1[y1.length - 1]
+          var lasty2 = y2[y2.length - 1]
           // check if goal will be met this "month"
-          if (g1Value - y1[y1.length - 1] < p1){
+          if (g1Value - lasty1 < p1){
             y1.push(g1Value);
-            p2 += p1 - (g1Value - y1[y1.length - 1]);
+            p2 += p1 - (g1Value - lasty1);
             goal1Met = true;
-          } else if (g2Value - y2[y2.length - 1] < p2){
+          } else if (g2Value - lasty2 < p2){
             y2.push(g2Value);
-            p1 += p2 - (g2Value - y2[y2.length - 1]);
+            p1 += p2 - (g2Value - lasty2);
             goal2Met = true;
           }
 
           // if neither goal met, add proportional monthly savings
           if (!(goal1Met || goal2Met)){
-            y1.push(y1[y1.length - 1] + p1);
-            y2.push(y2[y2.length - 1] + p2);
+            y1.push(lasty1 + p1);
+            y2.push(lasty2 + p2);
           } else if (goal1Met){
-            y2.push(y2[y2.length - 1] + p2);
+            y2.push(lasty2 + p2);
           } else if (goal2Met){
-            y1.push(y1[y1.length - 1] + p1);
+            y1.push(lasty1 + p1);
           }
 
           // increment xrange

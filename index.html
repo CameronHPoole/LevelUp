@@ -32,7 +32,7 @@
     <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p>
     <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
 
-    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8">
+    <script>
       const form = document.getElementById("goalPlanner");
       const g1 = form.elements["g1"];
       const g2 = form.elements["g2"];
@@ -95,7 +95,9 @@
         document.getElementById("result1").value = Math.round(r1);
         document.getElementById("result2").value = Math.round(r2);
       }
-
+    </script>
+    
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8">
       // generate bar chart
       var trace1 = {
         x: xrange,

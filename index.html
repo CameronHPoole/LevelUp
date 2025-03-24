@@ -29,8 +29,8 @@
       
     </form>
 
-    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p>
-    <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
+    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p><br>
+    <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p><br>
 
     <div id="tester" style="width:600px;height:250px;"></div>
 
@@ -49,8 +49,6 @@
       
       //var tempMonth = d.getMonth();
       //var xrange = [month[tempMonth] + " " + d.getFullYear().toString()];
-      var xrange = [0];
-      var tempMonth = xrange[0];
 
       function updateResult() {
         const g1Value = parseInt(g1.value);
@@ -59,6 +57,9 @@
         const priorityValue = parseInt(priority.value);
         //result.value = g1Value / (monthlyValue * (priorityValue / 100));
 
+        var xrange = [0];
+        var tempMonth = xrange[0];
+        
         var r1 = 0;
         var r2 = 0;
         

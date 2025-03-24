@@ -76,12 +76,12 @@
           lasty1 = y1[y1.length - 1];
           lasty2 = y2[y2.length - 1];
           // check if goal will be met this "month"
-          if (g1Value - lasty1 < p1){
+          if (!goal1Met && g1Value - lasty1 < p1){
             y1.push(g1Value);
             p2 += p1 - (g1Value - lasty1);
             goal1Met = true;
             r1 = xrange.length;
-          } else if (g2Value - lasty2 < p2){
+          } else if (!goal2Met && g2Value - lasty2 < p2){
             y2.push(g2Value);
             p1 += p2 - (g2Value - lasty2);
             goal2Met = true;

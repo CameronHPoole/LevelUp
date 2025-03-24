@@ -101,6 +101,9 @@
               y1.push(lasty1 + p1);
             }
 
+            // update last values
+            lasty1 = y1[y1.length - 1];
+            lasty2 = y2[y2.length - 1];
             // increment xrange
             tempMonth += 1;
             //xrange.push(month[tempMonth] + " " + (d.getFullYear() + Math.floor(tempMonth/12)).toString());

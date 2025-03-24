@@ -32,6 +32,8 @@
     <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p>
     <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
 
+    <div id="tester" style="width:600px;height:250px;"></div>
+
     <script>
       const form = document.getElementById("goalPlanner");
       const g1 = form.elements["g1"];
@@ -61,13 +63,17 @@
         var y1 = [0];
         var y2 = [0];
 
+        var lasty1 = 0;
+        var lasty2 = 0;
+
+        // calculate proportional monthly savings
+        var p1 = monthlyValue * (1 - (priorityValue / 100));
+        var p2 = monthlyValue * (priorityValue / 100);
+
         while (!(goal1Met && goal2Met) && tempMonth < 10000){
-          // calculate proportional monthly savings
-          var p1 = monthlyValue * (1 - (priorityValue / 100));
-          var p2 = monthlyValue * (priorityValue / 100);
           
-          var lasty1 = y1[y1.length - 1].value;
-          var lasty2 = y2[y2.length - 1].value;
+          lasty1 = y1[y1.length - 1];
+          lasty2 = y2[y2.length - 1];
           // check if goal will be met this "month"
           if (g1Value - lasty1 < p1){
             y1.push(g1Value);
@@ -79,7 +85,7 @@
             goal2Met = true;
           }
           console.log(lasty1);
-          console.log(p1);
+          //console.log(p1);
           // if neither goal met, add proportional monthly savings
           if (!(goal1Met || goal2Met)){
             y1.push(lasty1 + p1);
@@ -100,7 +106,8 @@
       }
     </script>
 
-    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8">
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
+    <script>
       // generate bar chart
       var trace1 = {
         x: xrange,
@@ -120,7 +127,9 @@
 
       var layout = {barmode: 'group'};
 
-      Plotly.newPlot('myDiv', data, layout);
+      TESTER = document.getElementById('tester');
+
+      Plotly.newPlot(TESTER, data, layout);
 
       //form.addEventListener("input", updateResult);
 

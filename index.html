@@ -44,17 +44,18 @@
       
       const result = form.elements["result1"];
 
+      const d = new Date();
+      const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      
+      var tempMonth = d.getMonth();
+      var xrange = [month[tempMonth].toString() + " " + d.getFullYear().toString()];
+
       function updateResult() {
         const g1Value = parseInt(g1.value);
         const g2Value = parseInt(g2.value);
         const monthlyValue = parseInt(monthly.value);
         const priorityValue = parseInt(priority.value);
         //result.value = g1Value / (monthlyValue * (priorityValue / 100));
-        const d = new Date();
-        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        
-        var tempMonth = d.getMonth();
-        var xrange = [month[tempMonth] + " " + d.getFullYear()];
 
         var r1 = 0;
         var r2 = 0;
@@ -134,49 +135,6 @@
         Plotly.newPlot(TESTER, data, layout);
     </script>
 
-    <!--
-    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
-    <script>
-      // generate bar chart
-      var trace1 = {
-        x: xrange,
-        y: y1,
-        name: 'Goal 1',
-        type: 'bar'
-      };
-
-      var trace2 = {
-        x: xrange,
-        y: y2,
-        name: 'Goal 2',
-        type: 'bar'
-      };
-
-      var data = [trace1, trace2];
-
-      var layout = {barmode: 'group'};
-
-      TESTER = document.getElementById('tester');
-
-      Plotly.newPlot(TESTER, data, layout);
-
-      //form.addEventListener("input", updateResult);
-
-      //updateResult();
-
-      //const firstForm = document.forms[0];
-      //console.log(firstForm);
-    </script>
-    -->
-
-    <!--
-    <div class="square" id="circleID"></div>
-    <div class="action">
-      <button onclick="paint('red')">Red</button>
-      <button onclick="paint('green')">Green</button>
-      <button onclick="paint('yellow')">Yellow</button>
-    </div>
-    -->
   </div>
 </body>
 </html>

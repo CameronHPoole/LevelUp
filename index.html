@@ -34,6 +34,7 @@
 
     <div id="tester" style="width:600px;height:250px;"></div>
 
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
     <script>
       const form = document.getElementById("goalPlanner");
       const g1 = form.elements["g1"];
@@ -103,9 +104,33 @@
 
         document.getElementById("result1").value = Math.round(r1);
         document.getElementById("result2").value = Math.round(r2);
+
+              // generate bar chart
+        var trace1 = {
+          x: xrange,
+          y: y1,
+          name: 'Goal 1',
+          type: 'bar'
+        };
+
+        var trace2 = {
+          x: xrange,
+          y: y2,
+          name: 'Goal 2',
+          type: 'bar'
+        };
+
+        var data = [trace1, trace2];
+
+        var layout = {barmode: 'group'};
+
+        TESTER = document.getElementById('tester');
+
+        Plotly.newPlot(TESTER, data, layout);
       }
     </script>
 
+    <!--
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
     <script>
       // generate bar chart
@@ -138,7 +163,8 @@
       //const firstForm = document.forms[0];
       //console.log(firstForm);
     </script>
-    
+    -->
+
     <!--
     <div class="square" id="circleID"></div>
     <div class="action">

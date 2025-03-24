@@ -48,8 +48,8 @@
       const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
       
       var tempMonth = d.getMonth();
-      var xrange = [month[tempMonth] + " " + d.getFullYear().toString()];
-      //var xrange = [0];
+      //var xrange = [month[tempMonth] + " " + d.getFullYear().toString()];
+      var xrange = [0];
       function updateResult() {
         const g1Value = parseInt(g1.value);
         const g2Value = parseInt(g2.value);
@@ -103,7 +103,8 @@
 
             // increment xrange
             tempMonth += 1;
-            xrange.push(month[tempMonth] + " " + (d.getFullYear() + Math.floor(tempMonth/12)).toString());
+            //xrange.push(month[tempMonth] + " " + (d.getFullYear() + Math.floor(tempMonth/12)).toString());
+            xrange.push(tempMonth);
           }
         }
 

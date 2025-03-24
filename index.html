@@ -59,26 +59,24 @@
 
         var xrange = [0];
         var tempMonth = xrange[0];
-        
+
         var r1 = 0;
         var r2 = 0;
         
         var goal1Met = false;
         var goal2Met = false;
+
         var y1 = [0];
         var y2 = [0];
 
-        var lasty1 = 0;
-        var lasty2 = 0;
+        var lasty1 = y1[y1.length - 1];
+        var lasty2 = y2[y2.length - 1];
 
         // calculate proportional monthly savings
         var p1 = monthlyValue * (1 - (priorityValue / 100));
         var p2 = monthlyValue * (priorityValue / 100);
         if (g1Value != NaN && g2Value != NaN && monthlyValue != NaN){
           while (!(goal1Met && goal2Met)){
-            
-            lasty1 = y1[y1.length - 1];
-            lasty2 = y2[y2.length - 1];
             // check if goal will be met this "month"
             if (!goal1Met && g1Value - lasty1 < p1){
               y1.push(g1Value);

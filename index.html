@@ -47,9 +47,11 @@
       const d = new Date();
       const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
       
-      var tempMonth = d.getMonth();
+      //var tempMonth = d.getMonth();
       //var xrange = [month[tempMonth] + " " + d.getFullYear().toString()];
       var xrange = [0];
+      var tempMonth = xrange[0];
+
       function updateResult() {
         const g1Value = parseInt(g1.value);
         const g2Value = parseInt(g2.value);
@@ -71,7 +73,6 @@
         // calculate proportional monthly savings
         var p1 = monthlyValue * (1 - (priorityValue / 100));
         var p2 = monthlyValue * (priorityValue / 100);
-        console.log(g1Value, g2Value, monthlyValue);
         if (g1Value != NaN && g2Value != NaN && monthlyValue != NaN){
           while (!(goal1Met && goal2Met)){
             
@@ -110,21 +111,20 @@
 
         document.getElementById("result1").value = Math.round(r1);
         document.getElementById("result2").value = Math.round(r2);
-      }
 
-      // generate bar chart
-      var trace1 = {
-          x: xrange,
-          y: y1,
-          name: 'Goal 1',
-          type: 'bar'
+        // generate bar chart
+        var trace1 = {
+            x: xrange,
+            y: y1,
+            name: 'Goal 1',
+            type: 'bar'
         };
 
         var trace2 = {
-          x: xrange,
-          y: y2,
-          name: 'Goal 2',
-          type: 'bar'
+            x: xrange,
+            y: y2,
+            name: 'Goal 2',
+            type: 'bar'
         };
 
         var data = [trace1, trace2];
@@ -134,6 +134,7 @@
         TESTER = document.getElementById('tester');
 
         Plotly.newPlot(TESTER, data, layout);
+      }
     </script>
 
   </div>

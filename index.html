@@ -54,7 +54,7 @@
         const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         
         var tempMonth = d.getMonth();
-        var xrange = [month[tempMonth]];
+        var xrange = [month[tempMonth] + " " + d.getFullYear()];
 
         var r1 = 0;
         var r2 = 0;
@@ -108,9 +108,10 @@
 
         document.getElementById("result1").value = Math.round(r1);
         document.getElementById("result2").value = Math.round(r2);
+      }
 
-              // generate bar chart
-        var trace1 = {
+      // generate bar chart
+      var trace1 = {
           x: xrange,
           y: y1,
           name: 'Goal 1',
@@ -131,7 +132,6 @@
         TESTER = document.getElementById('tester');
 
         Plotly.newPlot(TESTER, data, layout);
-      }
     </script>
 
     <!--

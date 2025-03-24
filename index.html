@@ -70,7 +70,7 @@
         // calculate proportional monthly savings
         var p1 = monthlyValue * (1 - (priorityValue / 100));
         var p2 = monthlyValue * (priorityValue / 100);
-
+        console.log(g1Value, g2Value, monthlyValue);
         if (g1Value != NaN && g2Value != NaN && monthlyValue != NaN){
           while (!(goal1Met && goal2Met)){
             

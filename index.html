@@ -25,12 +25,12 @@
       <label for="monthly">Monthly Savings ($/mo):</label><br>
       <input type="number" id="savings" name="savings"><br>
       <label for="range">Priority (0 is prioritize goal 1)</label>
-      <input type="range" min="0" max="100" value="50" class="slider" id="priority" oninput="updateResult()"><label id ="prio"></label><br>
+      <input type="range" min="0" max="100" value="50" class="slider" id="priority" oninput="updateResult()">
+      <label id ="prio"></label>
       
     </form>
 
-    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p><br>
-    <p>Months to achieve goal 2: <output id = "result2" name="result2"></output></p><br>
+    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p><br>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
 
     <div id="tester" style="width:600px;height:250px;"></div>
 
@@ -80,7 +80,16 @@
         
         while (!(goal1Met && goal2Met) && xrange.length < 1000){
           // check if goal will be met this "month"
-          if (!goal1Met && g1Value - lasty1 < p1){
+          if (!goal1Met && g1Value - lasty1 < p1 && !goal2Met && g2Value - lasty2 < p2){
+            y1.push(g1Value);
+            p2 += p1 - (g1Value - lasty1);
+            goal1Met = true;
+            r1 = xrange.length;
+            y2.push(g2Value);
+            p1 += p2 - (g2Value - lasty2);
+            goal2Met = true;
+            r2 = xrange.length;
+          } else if (!goal1Met && g1Value - lasty1 < p1){
             y1.push(g1Value);
             p2 += p1 - (g1Value - lasty1);
             goal1Met = true;
@@ -113,8 +122,8 @@
           xrange.push(tempMonth);
         }
 
-        //document.getElementById("result1").value = Math.round(r1);
-        //document.getElementById("result2").value = Math.round(r2);
+        document.getElementById("result1").value = Math.round(r1);
+        document.getElementById("result2").value = Math.round(r2);
 
         // generate bar chart
         var trace1 = {

@@ -24,8 +24,8 @@
       <input type="number" id="g2" name="g2" ><br>
       <label for="monthly">Monthly Savings ($/mo):</label><br>
       <input type="number" id="savings" name="savings"><br>
-      <label for="range">Priority (0 is prioritize goal 1)</label>
-      <input type="range" min="0" max="100" value="50" class="slider" id="priority" oninput="updateResult()">
+      <label for="range" text-align: center>Priority</label>
+      <div class="inputwrapper">http:// <input type="range" min="0" max="100" value="50" class="slider" id="priority" oninput="updateResult()" class="form-control-inline"/></div>
       <label id ="prio"></label>
     </form>
 
@@ -87,14 +87,6 @@
           //xrange.push(month[tempMonth] + " " + (d.getFullYear() + Math.floor(tempMonth/12)).toString());
           xrange.push(tempMonth);
           // check if goal will be met this "month"
-          if (p1 + p2 > g1Value - lasty1 + g2Value - lasty2){
-            y1.push(g1Value);
-            y2.push(g2Value);
-            goal1Met = true;
-            goal2Met = true;
-            r1 = xrange.length;
-            r2 = xrange.length;
-          }
           
           if (!goal1Met && g1Value - lasty1 < p1){
             y1.push(g1Value);

@@ -25,11 +25,9 @@
       <label for="monthly">Monthly Savings ($/mo):</label><br>
       <input type="number" id="savings" name="savings"><br>
       <label for="range" text-align: center>Priority</label>
-      <input type="range" min="0" max="100" value="50" class="slider" id="priority" step="100" list="steplist" oninput="updateResult()">
-      <datalist id="steplist">
-        <option>Goal 1</option>
-        <option>Goal 2</option>
-    </datalist>
+      <span class="leftlabel">Goal 1</span>
+      <input type="range" min="0" max="100" value="50" class="slider" id="priority" oninput="updateResult()">
+      <span class="rightlabel">Goal 2</span>
       <label id ="prio"></label>
     </form>
 

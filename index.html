@@ -78,6 +78,14 @@
         document.getElementById("prio").value = Math.round(monthlyValue * (1 - (priorityValue / 100)));
         
         while (!(goal1Met && goal2Met) && xrange.length < 1000){
+          // update last values
+          lasty1 = y1[y1.length - 1];
+          lasty2 = y2[y2.length - 1];
+          // increment xrange
+          tempMonth += 1;
+          // TODO fix dates to show those
+          //xrange.push(month[tempMonth] + " " + (d.getFullYear() + Math.floor(tempMonth/12)).toString());
+          xrange.push(tempMonth);
           // check if goal will be met this "month"
           if (p1 + p2 > g1Value - lasty1 + g2Value - lasty2){
             y1.push(g1Value);
@@ -102,23 +110,14 @@
           //console.log(lasty1);
           //console.log(p1);
           // if neither goal met, add proportional monthly savings
-          if (!(goal1Met || goal2Met)){
+          if (goal1Met && !goal2Met){
+            y2.push(lasty2 + p2);
+          } else if (goal2Met && !goal1Met){
+            y1.push(lasty1 + p1);
+          } else if (!goal1Met && !goal2Met){
             y1.push(lasty1 + p1);
             y2.push(lasty2 + p2);
-          } else if (!goal1Met){
-            y2.push(lasty2 + p2);
-          } else if (!goal2Met){
-            y1.push(lasty1 + p1);
           }
-
-          // update last values
-          lasty1 = y1[y1.length - 1];
-          lasty2 = y2[y2.length - 1];
-          // increment xrange
-          tempMonth += 1;
-          // TODO fix dates to show those
-          //xrange.push(month[tempMonth] + " " + (d.getFullYear() + Math.floor(tempMonth/12)).toString());
-          xrange.push(tempMonth);
         }
 
         document.getElementById("result1").value = Math.round(r1);

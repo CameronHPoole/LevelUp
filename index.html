@@ -27,10 +27,9 @@
       <label for="range">Priority (0 is prioritize goal 1)</label>
       <input type="range" min="0" max="100" value="50" class="slider" id="priority" oninput="updateResult()">
       <label id ="prio"></label>
-      
     </form>
 
-    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output></p><br>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
+    <p>Months to achieve goal 1: <output id = "result1" name="result1"></output><br>Months to achieve goal 2: <output id = "result2" name="result2"></output></p>
 
     <div id="tester" style="width:600px;height:250px;"></div>
 
@@ -80,16 +79,16 @@
         
         while (!(goal1Met && goal2Met) && xrange.length < 1000){
           // check if goal will be met this "month"
-          if (!goal1Met && g1Value - lasty1 < p1 && !goal2Met && g2Value - lasty2 < p2){
+          if (p1 + p2 > g1Value - lasty1 + g2Value - lasty2){
             y1.push(g1Value);
-            p2 += p1 - (g1Value - lasty1);
-            goal1Met = true;
-            r1 = xrange.length;
             y2.push(g2Value);
-            p1 += p2 - (g2Value - lasty2);
+            goal1Met = true;
             goal2Met = true;
+            r1 = xrange.length;
             r2 = xrange.length;
-          } else if (!goal1Met && g1Value - lasty1 < p1){
+          }
+          
+          if (!goal1Met && g1Value - lasty1 < p1){
             y1.push(g1Value);
             p2 += p1 - (g1Value - lasty1);
             goal1Met = true;
@@ -106,9 +105,9 @@
           if (!(goal1Met || goal2Met)){
             y1.push(lasty1 + p1);
             y2.push(lasty2 + p2);
-          } else if (goal1Met){
+          } else if (!goal1Met){
             y2.push(lasty2 + p2);
-          } else if (goal2Met){
+          } else if (!goal2Met){
             y1.push(lasty1 + p1);
           }
 
